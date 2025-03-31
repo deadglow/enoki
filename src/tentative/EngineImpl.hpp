@@ -1,13 +1,13 @@
 #pragma once
 
-#include "Renderer.hpp"
-#include "ModelManager.hpp"
-#include "ShaderManager.hpp"
-#include "MaterialManager.hpp"
+#include "renderer/Renderer.hpp"
+#include "renderer/ModelManager.hpp"
+#include "renderer/ShaderManager.hpp"
+#include "renderer/MaterialManager.hpp"
 #include "Time.hpp"
 #include "Input.hpp"
-#include "Physics.hpp"
-#include "DebugRender.hpp"
+#include "physics/Physics.hpp"
+#include "renderer/DebugRender.hpp"
 
 namespace Enoki
 {

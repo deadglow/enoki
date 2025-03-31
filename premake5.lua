@@ -37,6 +37,7 @@ local physTable = {
 -- premake5.lua
 workspace("opengles-renderer")
 	configurations( { "debug", "release" } )
+	platforms( {"win64", "linux"} )
 	location("build")
 
 local projectName = "opengles-renderer"
@@ -71,5 +72,5 @@ project(projectName)
 		defines( { "NDEBUG" })
 		optimize("Speed")
 
-	flags( { "Verbose" } )
+	flags( { } )
 

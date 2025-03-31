@@ -22,7 +22,7 @@ static void TraceImpl(const char* inFMT, ...)
 	vsnprintf(buffer, sizeof(buffer), inFMT, list);
 	va_end(list);
 
-	printf(buffer);
+	printf("%s", buffer);
 }
 
 #ifdef JPH_ENABLE_ASSERTS

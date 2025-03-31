@@ -17,12 +17,11 @@ namespace Enoki
 		Colour() = default;
 
 		Colour(const uint8 r_arg, const uint8 g_arg, const uint8 b_arg, const uint8 a_arg)
-		{
-			r = r_arg;
-			g = g_arg;
-			b = b_arg;
-			a = a_arg;
-		};
+			: r(r_arg)
+			, g(g_arg)
+			, b(b_arg)
+			, a(a_arg)
+		{ };
 
 		Colour(const vec4_t& floatColour)
 			: Colour(
@@ -35,7 +34,7 @@ namespace Enoki
 
 		Colour(const uint32 colour) { *(uint32*)channels = colour; };
 
-		uint32 GetUint32() const { return *(uint32*)channels; }
+		uint32 GetUint32() const { return reinterpret_cast<uint32>(channels); }
 
 		vec4_t GetVec4() const {
 			return vec4(

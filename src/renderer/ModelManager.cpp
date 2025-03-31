@@ -1,4 +1,6 @@
 #include "ModelManager.hpp"
+#include <cstring>
+
 #include "SDL/SDL.h"
 #include "gles2.h"
 

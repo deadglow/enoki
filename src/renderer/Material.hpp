@@ -3,7 +3,7 @@
 #include <vector>
 #include <string>
 #include "Guid.hpp"
-#include "Uniform.hpp"
+#include "renderer/Uniform.hpp"
 
 namespace Enoki::Graphics
 {

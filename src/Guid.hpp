@@ -1,7 +1,6 @@
 #pragma once
 
 #include "CommonTypes.hpp"
-#include <unordered_map>
 
 namespace fastPRNG
 {
@@ -17,14 +16,9 @@ namespace Enoki
 		static fastPRNG::fastXS64& GetRandGenerator();
 	};
 
-
 	template <class T>
 	struct Guid
 	{
-	public:
-		Guid() = default;
-		Guid(const uint64 value) : value(value) {}
-
 		bool operator==(const Guid<T>& other) const
 		{
 			return value == other.value;
@@ -32,9 +26,6 @@ namespace Enoki
 
 		bool IsValid() const { return value > 0; }
 
-		uint64 value;
-
-	public:
 		static Guid<T> CreateGUID()
 		{
 			return Guid<T>(GuidGeneration::CreateU64());
@@ -44,6 +35,8 @@ namespace Enoki
 		{
 			return Guid<T>(GuidGeneration::CreateU64FromSeed(seed));
 		}
+
+		uint64 value;
 	};
 }
 
@@ -54,7 +47,7 @@ struct std::hash<Enoki::Guid<T>>
 {
 	std::size_t operator()(const Enoki::Guid<T>& k) const
 	{
-		return static_cast<std::size_t>(k.value);
+		return static_cast<size>(k.value);
 	}
 };
 

@@ -1,6 +1,8 @@
 #include "ModelLoader.hpp"
 
 #include "Model.hpp"
+#include <cstring>
+
 #include "SDL/SDL.h"
 
 #define TINYGLTF_IMPLEMENTATION
@@ -142,7 +144,7 @@ bool Enoki::Graphics::ModelLoader::LoadFromFile(std::string_view filename, Model
 	if (!success)
 	{
 		printf("\nLoad error on %s : %s", path.string().c_str(), err.c_str());
-		printf(err.c_str());
+		printf("%s", err.c_str());
 		SDL_assert(success);
 	}
 

@@ -1,6 +1,7 @@
 #pragma once
 #include <cstring>
 #include "SDL/SDL.h"
+#include <cstring>
 
 namespace Enoki
 {

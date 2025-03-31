@@ -51,15 +51,15 @@ project(projectName)
 	includedirs( { "include" } )
 
 	libdirs( {"lib" } )
-	links( {"mingw32", "SDL2main", "SDL2", "EGL", "GLESv2", "Jolt" } )
-	
+	links( {"SDL2main", "SDL2", "EGL", "GLESv2" } )
+
 	-- filter("action:gmake2")
 	-- 	links( { "mingw32" })
 	-- filter({ })
 
 	-- physics implementation
 	defines( { physTable[_OPTIONS["physics"]] })
-	defines( { "ENABLE_DEBUG_RENDER", "JPH_DEBUG_RENDERER", "JPH_PROFILE_ENABLED" } )
+	-- defines( { "ENABLE_DEBUG_RENDER", "JPH_DEBUG_RENDERER", "JPH_PROFILE_ENABLED" } )
 
 	-- filter("options:not nodebugrender")
 
@@ -73,4 +73,3 @@ project(projectName)
 		optimize("Speed")
 
 	flags( { } )
-

@@ -1,3 +1,5 @@
+#if defined(PHYSICS_USE_JOLT)
+
 #include "JoltDebugRenderer.hpp"
 #include "Engine.hpp"
 #include "DebugRender.hpp"
@@ -51,3 +53,4 @@ void JoltDebugRenderer::DrawConstraints()
 
 #endif // JPH_DEBUG_RENDERER
 
+#endif

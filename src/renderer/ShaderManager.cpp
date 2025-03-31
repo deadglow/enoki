@@ -7,7 +7,7 @@
 #include "gles2.h"
 #include "SDL/SDL.h"
 
-static inline std::string_view SHADER_PATH = "assets\\shaders\\";
+static inline std::string_view SHADER_PATH = "assets/shaders/";
 static inline std::string_view DEFAULT_VS = "default";
 static inline std::string_view DEFAULT_FS = "default";
 static inline std::string_view LINES_VS = "lines";

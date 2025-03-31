@@ -1,3 +1,4 @@
+#if defined(PHYSICS_USE_JOLT)
 #include "PhysicsJolt.hpp"
 
 #include <SDL/SDL.h>
@@ -171,3 +172,5 @@ void PhysicsJolt::DebugRender(bool bodies, bool constraints)
 }
 
 // __INTERFACE IMPL //
+
+#endif

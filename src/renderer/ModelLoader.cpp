@@ -13,7 +13,7 @@
 using namespace Enoki;
 using namespace Enoki::Graphics;
 
-const char* PATH_MODEL = "assets\\models\\";
+const char* PATH_MODEL = "assets/models/";
 
 enum GLTFAtr
 {

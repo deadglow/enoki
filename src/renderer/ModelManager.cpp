@@ -3,6 +3,7 @@
 
 #include "SDL/SDL.h"
 #include "gles2.h"
+#include <cstring>
 
 #include "ModelLoader.hpp"
 

@@ -65,7 +65,7 @@
 			"args": [
 			],
 			"options": {
-				"cwd": "${workspaceFolder}\\build\\opengles-renderer"
+				"cwd": "${workspaceFolder}/build/opengles-renderer"
 			},
 			"problemMatcher": [
 				"$gcc"

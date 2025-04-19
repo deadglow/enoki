@@ -33,3 +33,5 @@
 
 # Premake folders
 build
+.cache
+bin

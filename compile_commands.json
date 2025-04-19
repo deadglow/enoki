@@ -1,0 +1,262 @@
+[
+  {
+    "arguments": [
+      "g++",
+      "-MD",
+      "-MP",
+      "-DPHYSICS_NONE",
+      "-DDEBUG",
+      "-DJPH_ENABLE_ASSERTS",
+      "-I../../include",
+      "-m64",
+      "-g",
+      "-c",
+      "-o",
+      "obj/win64/debug/Arena.o",
+      "../../src/Arena.hpp"
+    ],
+    "directory": "/home/boletus/git/opengles-renderer/build/opengles-renderer",
+    "file": "/home/boletus/git/opengles-renderer/src/Arena.hpp",
+    "output": "/home/boletus/git/opengles-renderer/build/opengles-renderer/obj/win64/debug/Arena.o"
+  },
+  {
+    "arguments": [
+      "g++",
+      "-MD",
+      "-MP",
+      "-DPHYSICS_NONE",
+      "-DDEBUG",
+      "-DJPH_ENABLE_ASSERTS",
+      "-I../../include",
+      "-m64",
+      "-g",
+      "-c",
+      "-o",
+      "obj/win64/debug/Colour.o",
+      "../../src/Colour.hpp"
+    ],
+    "directory": "/home/boletus/git/opengles-renderer/build/opengles-renderer",
+    "file": "/home/boletus/git/opengles-renderer/src/Colour.hpp",
+    "output": "/home/boletus/git/opengles-renderer/build/opengles-renderer/obj/win64/debug/Colour.o"
+  },
+  {
+    "arguments": [
+      "g++",
+      "-MD",
+      "-MP",
+      "-DPHYSICS_NONE",
+      "-DDEBUG",
+      "-DJPH_ENABLE_ASSERTS",
+      "-I../../include",
+      "-m64",
+      "-g",
+      "-c",
+      "-o",
+      "obj/win64/debug/CommonTypes.o",
+      "../../src/CommonTypes.hpp"
+    ],
+    "directory": "/home/boletus/git/opengles-renderer/build/opengles-renderer",
+    "file": "/home/boletus/git/opengles-renderer/src/CommonTypes.hpp",
+    "output": "/home/boletus/git/opengles-renderer/build/opengles-renderer/obj/win64/debug/CommonTypes.o"
+  },
+  {
+    "arguments": [
+      "g++",
+      "-MD",
+      "-MP",
+      "-DPHYSICS_NONE",
+      "-DDEBUG",
+      "-DJPH_ENABLE_ASSERTS",
+      "-I../../include",
+      "-m64",
+      "-g",
+      "-c",
+      "-o",
+      "obj/win64/debug/Guid.o",
+      "../../src/Guid.cpp"
+    ],
+    "directory": "/home/boletus/git/opengles-renderer/build/opengles-renderer",
+    "file": "/home/boletus/git/opengles-renderer/src/Guid.cpp",
+    "output": "/home/boletus/git/opengles-renderer/build/opengles-renderer/obj/win64/debug/Guid.o"
+  },
+  {
+    "arguments": [
+      "g++",
+      "-MD",
+      "-MP",
+      "-DPHYSICS_NONE",
+      "-DDEBUG",
+      "-DJPH_ENABLE_ASSERTS",
+      "-I../../include",
+      "-m64",
+      "-g",
+      "-c",
+      "-o",
+      "obj/win64/debug/Guid.o",
+      "../../src/Guid.hpp"
+    ],
+    "directory": "/home/boletus/git/opengles-renderer/build/opengles-renderer",
+    "file": "/home/boletus/git/opengles-renderer/src/Guid.hpp",
+    "output": "/home/boletus/git/opengles-renderer/build/opengles-renderer/obj/win64/debug/Guid.o"
+  },
+  {
+    "arguments": [
+      "g++",
+      "-MD",
+      "-MP",
+      "-DPHYSICS_NONE",
+      "-DDEBUG",
+      "-DJPH_ENABLE_ASSERTS",
+      "-I../../include",
+      "-m64",
+      "-g",
+      "-c",
+      "-o",
+      "obj/win64/debug/Input.o",
+      "../../src/Input.hpp"
+    ],
+    "directory": "/home/boletus/git/opengles-renderer/build/opengles-renderer",
+    "file": "/home/boletus/git/opengles-renderer/src/Input.hpp",
+    "output": "/home/boletus/git/opengles-renderer/build/opengles-renderer/obj/win64/debug/Input.o"
+  },
+  {
+    "arguments": [
+      "g++",
+      "-MD",
+      "-MP",
+      "-DPHYSICS_NONE",
+      "-DDEBUG",
+      "-DJPH_ENABLE_ASSERTS",
+      "-I../../include",
+      "-m64",
+      "-g",
+      "-c",
+      "-o",
+      "obj/win64/debug/Math.o",
+      "../../src/Math.cpp"
+    ],
+    "directory": "/home/boletus/git/opengles-renderer/build/opengles-renderer",
+    "file": "/home/boletus/git/opengles-renderer/src/Math.cpp",
+    "output": "/home/boletus/git/opengles-renderer/build/opengles-renderer/obj/win64/debug/Math.o"
+  },
+  {
+    "arguments": [
+      "g++",
+      "-MD",
+      "-MP",
+      "-DPHYSICS_NONE",
+      "-DDEBUG",
+      "-DJPH_ENABLE_ASSERTS",
+      "-I../../include",
+      "-m64",
+      "-g",
+      "-c",
+      "-o",
+      "obj/win64/debug/Math.o",
+      "../../src/Math.h"
+    ],
+    "directory": "/home/boletus/git/opengles-renderer/build/opengles-renderer",
+    "file": "/home/boletus/git/opengles-renderer/src/Math.h",
+    "output": "/home/boletus/git/opengles-renderer/build/opengles-renderer/obj/win64/debug/Math.o"
+  },
+  {
+    "arguments": [
+      "g++",
+      "-MD",
+      "-MP",
+      "-DPHYSICS_NONE",
+      "-DDEBUG",
+      "-DJPH_ENABLE_ASSERTS",
+      "-I../../include",
+      "-m64",
+      "-g",
+      "-c",
+      "-o",
+      "obj/win64/debug/Simulation.o",
+      "../../src/Simulation.hpp"
+    ],
+    "directory": "/home/boletus/git/opengles-renderer/build/opengles-renderer",
+    "file": "/home/boletus/git/opengles-renderer/src/Simulation.hpp",
+    "output": "/home/boletus/git/opengles-renderer/build/opengles-renderer/obj/win64/debug/Simulation.o"
+  },
+  {
+    "arguments": [
+      "g++",
+      "-MD",
+      "-MP",
+      "-DPHYSICS_NONE",
+      "-DDEBUG",
+      "-DJPH_ENABLE_ASSERTS",
+      "-I../../include",
+      "-m64",
+      "-g",
+      "-c",
+      "-o",
+      "obj/win64/debug/Time.o",
+      "../../src/Time.hpp"
+    ],
+    "directory": "/home/boletus/git/opengles-renderer/build/opengles-renderer",
+    "file": "/home/boletus/git/opengles-renderer/src/Time.hpp",
+    "output": "/home/boletus/git/opengles-renderer/build/opengles-renderer/obj/win64/debug/Time.o"
+  },
+  {
+    "arguments": [
+      "g++",
+      "-MD",
+      "-MP",
+      "-DPHYSICS_NONE",
+      "-DDEBUG",
+      "-DJPH_ENABLE_ASSERTS",
+      "-I../../include",
+      "-m64",
+      "-g",
+      "-c",
+      "-o",
+      "obj/win64/debug/entrypoint.o",
+      "../../src/entrypoint.cpp"
+    ],
+    "directory": "/home/boletus/git/opengles-renderer/build/opengles-renderer",
+    "file": "/home/boletus/git/opengles-renderer/src/entrypoint.cpp",
+    "output": "/home/boletus/git/opengles-renderer/build/opengles-renderer/obj/win64/debug/entrypoint.o"
+  },
+  {
+    "arguments": [
+      "g++",
+      "-MD",
+      "-MP",
+      "-DPHYSICS_NONE",
+      "-DDEBUG",
+      "-DJPH_ENABLE_ASSERTS",
+      "-I../../include",
+      "-m64",
+      "-g",
+      "-c",
+      "-o",
+      "obj/win64/debug/math_3d.o",
+      "../../src/math_3d.h"
+    ],
+    "directory": "/home/boletus/git/opengles-renderer/build/opengles-renderer",
+    "file": "/home/boletus/git/opengles-renderer/src/math_3d.h",
+    "output": "/home/boletus/git/opengles-renderer/build/opengles-renderer/obj/win64/debug/math_3d.o"
+  },
+  {
+    "arguments": [
+      "g++",
+      "-MD",
+      "-MP",
+      "-DPHYSICS_NONE",
+      "-DDEBUG",
+      "-DJPH_ENABLE_ASSERTS",
+      "-I../../include",
+      "-m64",
+      "-g",
+      "-c",
+      "-o",
+      "obj/win64/debug/math_rotor.o",
+      "../../src/math_rotor.h"
+    ],
+    "directory": "/home/boletus/git/opengles-renderer/build/opengles-renderer",
+    "file": "/home/boletus/git/opengles-renderer/src/math_rotor.h",
+    "output": "/home/boletus/git/opengles-renderer/build/opengles-renderer/obj/win64/debug/math_rotor.o"
+  },
+]

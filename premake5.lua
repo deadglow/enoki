@@ -1,3 +1,5 @@
+require "ecc/ecc"
+
 local mergeTables = function(into, from)
 	for _,v in ipairs(from) do
 		table.insert(into, v)

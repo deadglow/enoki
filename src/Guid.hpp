@@ -38,21 +38,18 @@ namespace Enoki
 
 		uint64 value;
 	};
-}
+} // namespace Enoki
 
-
-template<>
 template <typename T>
 struct std::hash<Enoki::Guid<T>>
 {
 	std::size_t operator()(const Enoki::Guid<T>& k) const
 	{
-		return static_cast<size>(k.value);
+		return static_cast<size_t>(k.value);
 	}
 };
 
-template<>
-template<typename T>
+template <typename T>
 struct std::equal_to<Enoki::Guid<T>>
 {
 	bool operator()(const Enoki::Guid<T>& lhs, const Enoki::Guid<T>& rhs) const

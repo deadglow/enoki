@@ -1,19 +1,12 @@
 #pragma once
 #include "Arena.hpp"
+#include "Event.hpp"
 #include <cstddef>
 #include <cstring>
-#include <string>
 #include <vector>
 
 namespace Enoki
 {
-	struct EventHeader
-	{
-		std::string name; // make this a fixed string
-		OffsetPtr<uint8> ptr;
-		size_t size;
-	};
-
 	struct EventQueue
 	{
 		EventQueue(Arena* eventArena)
@@ -24,37 +17,46 @@ namespace Enoki
 		Arena* arena;
 		std::vector<EventHeader> events;
 
-		void QueueBytes(std::string_view name, const uint8* data, size_t size)
+		void QueueBytes(EventID id, const uint8* data, size_t size)
 		{
 			OffsetPtr<uint8> ptr = arena->AllocBytes(size);
 			uint8* bytesPtr = arena->AccessPtr(ptr);
 
 			std::memcpy(bytesPtr, data, size);
 
-			events.push_back(EventHeader {
-				.name = name.data(),
-				.ptr = ptr,
-				.size = size
-			});
+			events.push_back(EventHeader {.id = id, .ptr = ptr, .size = size});
 		}
 
 		template <typename Event, typename... Args>
-		void QueueEvent(std::string_view name, Args... args)
+		void QueueEvent(EventID id, Args... args)
 		{
 			OffsetPtr<Event> ptr = arena->New<Event>(args...);
 			events.push_back(EventHeader {
-				.name = name.data(),
+				.id = id,
 				.ptr = ptr,
 				.size = sizeof(Event),
 			});
 		}
-		
+
+		template <typename Event, typename... Args>
+		void QueueEvent(Args... args)
+		{
+			EventID id {0}; // generate this from the typehash or registration
+
+			OffsetPtr<Event> ptr = arena->New<Event>(args...);
+			events.push_back(EventHeader {
+				.id = id,
+				.ptr = ptr,
+				.size = sizeof(Event),
+			});
+		}
+
 		void AppendQueue(const EventQueue& other)
 		{
 			for (auto& event : other.events)
 			{
 				const uint8* eventData = other.AccessEventData(event);
-				QueueBytes(event.name, eventData, event.size);
+				QueueBytes(event.id, eventData, event.size);
 			}
 		}
 
@@ -77,7 +79,7 @@ namespace Enoki
 		SimulationEvents(Arena* eventArena)
 			: EventQueue(eventArena)
 		{}
-		
+
 		// tracker so that we don't dispatch events that are being added to the
 		// queue WHILE iterating.
 		size_t firstPendingEvent = 0;

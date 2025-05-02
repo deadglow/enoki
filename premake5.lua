@@ -46,6 +46,7 @@ local projectName = "opengles-renderer"
 project(projectName)
 	kind("ConsoleApp")
 	language("C++")
+	cppdialect("C++20")
 	targetdir("bin/%{cfg.buildcfg}")
 	location("build/" .. projectName)
 

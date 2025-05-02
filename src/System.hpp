@@ -20,7 +20,7 @@ namespace Enoki
 		}
 
 		// Override this to add listeners
-		virtual void RegisterListeners(PhaseDispatchers& dispatchers) {}
+		virtual void RegisterListeners(PhasedDispatchers& dispatchers) {}
 
 	private:
 		std::string name;

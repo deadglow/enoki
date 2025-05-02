@@ -1,9 +1,8 @@
 {
 	"tasks": [
-		// premake clean
 		{
 			"label": "premake-clean",
-			"type": "cppbuild",
+			"type": "shell",
 			"command": "premake5",
 			"args": [
 				"clean"
@@ -16,10 +15,9 @@
 			},
 			"detail": "Generate premake files."
 		},
-		// premake generate
 		{
 			"label": "premake-generate",
-			"type": "cppbuild",
+			"type": "shell",
 			"command": "premake5",
 			"args": [
 				"gmake2"
@@ -31,17 +29,15 @@
 				"kind": "none"
 			},
 			"detail": "Generate premake files.",
-			"dependsOn":[
-			]
+			"dependsOn": []
 		},
-		// make
 		{
 			"label": "mingw32-make",
-			"type": "cppbuild",
+			"type": "shell",
 			"command": "mingw32-make.exe",
 			"args": [
 				"configuration=debug",
-				"opengles-renderer",
+				"opengles-renderer"
 			],
 			"options": {
 				"cwd": "${workspaceFolder}\\build"
@@ -51,35 +47,30 @@
 			],
 			"group": {
 				"kind": "build",
-				"isDefault": true
 			},
 			"detail": "Run generated files.",
-			"dependsOn":[
+			"dependsOn": [
 				"premake-generate"
 			]
 		},
 		{
 			"label": "make",
-			"type": "cppbuild",
+			"type": "shell",
 			"command": "make",
-			"args": [
-			],
+			"args": [],
 			"options": {
 				"cwd": "${workspaceFolder}/build/opengles-renderer"
 			},
-			"problemMatcher": [
-				"$gcc"
-			],
+			"problemMatcher": [],
 			"group": {
 				"kind": "build",
 				"isDefault": true
 			},
 			"detail": "Run generated files.",
-			"dependsOn":[
+			"dependsOn": [
 				"premake-generate"
 			]
-		},
-
+		}
 	],
 	"version": "2.0.0"
 }

@@ -44,19 +44,47 @@ namespace Enoki
 			OffsetPtr<T> result = arena->Alloc<T>();
 			allocations.push_back({
 				.name = "",
-				.address = result.offset,
+				.offset = result.offset,
 				.size = sizeof(T),
 			});
 			return {result};
 		}
 
 		template <typename T>
-		DataPtr<T> Alloc(std::string_view name)
+		DataPtr<T> AllocNamed(std::string_view name)
 		{
 			OffsetPtr<T> result = arena->Alloc<T>();
 			allocations.push_back({
 				.name = name,
-				.address = result.offset,
+				.offset = result.offset,
+				.size = sizeof(T),
+			});
+
+			assert(!namedAllocations.contains(name.data()));
+			namedAllocations[name.data()] = allocations.back();
+
+			return {result};
+		}
+
+		template <typename T, typename... Args>
+		DataPtr<T> New(Args... args)
+		{
+			OffsetPtr<T> result = arena->New<T, Args...>(args...);
+			allocations.push_back(Allocation {
+				.name = "",
+				.offset = result.offset,
+				.size = sizeof(T),
+			});
+			return {result};
+		}
+
+		template <typename T, typename... Args>
+		DataPtr<T> NewNamed(std::string_view name, Args... args)
+		{
+			OffsetPtr<T> result = arena->New<T, Args...>(args...);
+			allocations.push_back(Allocation {
+				.name = name.data(),
+				.offset = result.offset,
 				.size = sizeof(T),
 			});
 
@@ -83,7 +111,9 @@ namespace Enoki
 		{
 			assert(namedAllocations.contains(name.data()));
 			const Allocation& allocation = namedAllocations.at(name.data());
-			return Access(DataPtr<T>(allocation.offset));
+			return Access(DataPtr<T> {
+				.ptr = allocation.offset,
+			});
 		}
 
 		template <typename T>
@@ -91,7 +121,9 @@ namespace Enoki
 		{
 			assert(namedAllocations.contains(name.data()));
 			const Allocation& allocation = namedAllocations.at(name.data());
-			return Access(DataPtr<T>(allocation.offset));
+			return Access(DataPtr<T> {
+				.ptr = allocation.offset,
+			});
 		}
 	};
 

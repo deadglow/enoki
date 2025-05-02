@@ -1,60 +1,54 @@
 #pragma once
 
 #include "CommonTypes.hpp"
+#include "OffsetPtr.hpp"
+
 #include <cassert>
 #include <cstddef>
+#include <cstring>
 #include <memory>
 #include <utility>
 
 namespace Enoki
 {
-	template <typename T>
-	struct OffsetPtr
-	{
-		size_t offset;
-	};
-
 	class Arena
 	{
 	public:
-		static constexpr size_t Capacity = 322;
+		Arena(size_t _capacity, std::allocator<uint8> allocator = std::allocator<uint8>())
+			: capacity(_capacity)
+		{
+			buffer = std::unique_ptr<uint8[]>(allocator.allocate(capacity));
+			std::memset(buffer.get(), 0, capacity);
+		}
 
-	public:
+		inline size_t GetCapacity() const { return capacity; }
+
 		inline size_t GetUsed() const { return used; }
 
-		inline size_t GetAvailable() const { return Capacity - used; }
+		inline size_t GetAvailable() const { return capacity - used; }
 
-		inline size_t GetRawAddress(size_t offset)
-		{
-			// start of the arena DATA starts at the end of this structure.
-			return (size_t)this + sizeof(Arena) + offset;
-		}
+		inline uint8* GetByteAddress(size_t offset) { return buffer.get() + offset; }
 
 		template <typename T>
 		inline T* AccessPtr(OffsetPtr<T> offset)
 		{
-			return (T*)(GetRawAddress(offset.offset));
+			return reinterpret_cast<T*>(GetByteAddress(offset.offset));
 		}
 
-		OffsetPtr<uint8> AllocBytesAligned(size_t size, size_t alignment)
+		inline OffsetPtr<uint8> AllocBytesAligned(size_t size, size_t alignment)
 		{
 			// todo
+			return {0};
 		}
 
-		OffsetPtr<uint8> AllocBytes(size_t size)
+		inline OffsetPtr<uint8> AllocBytes(size_t size)
 		{
 			assert(size);
+			assert(size <= GetAvailable());
+
 			OffsetPtr<uint8> ptr {used};
 			used += size;
 			return ptr;
-		}
-
-		void Free(size_t size)
-		{
-			assert(size <= used);
-			assert(size > 0);
-
-			used -= size;
 		}
 
 		void Clear() { used = 0; }
@@ -62,7 +56,7 @@ namespace Enoki
 		template <typename T>
 		inline OffsetPtr<T> Alloc()
 		{
-			return reinterpret_cast<OffsetPtr<T>>(AllocBytes(sizeof(T)));
+			return static_cast<OffsetPtr<T>>(AllocBytes(sizeof(T)).offset);
 		}
 
 		template <typename T, typename... Args>
@@ -70,19 +64,14 @@ namespace Enoki
 		{
 			OffsetPtr<T> ptr = Alloc<T>();
 
-			T* data = ptr.Get(this);
-			new (data) T(std::forward<decltype(args)>(args)...);
+			T* data = AccessPtr(ptr);
+			new (data) T(std::forward<decltype(args)...>(args)...);
 			return ptr;
 		}
 
 	protected:
+		size_t capacity = 0;
 		size_t used = 0;
-	};
-
-	template <size_t Capacity>
-	class ArenaInplace final : public Arena
-	{
-	private:
-		uint8 inplaceMemory[Capacity];
+		std::unique_ptr<uint8[]> buffer = nullptr;
 	};
 } // namespace Enoki

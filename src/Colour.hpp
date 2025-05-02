@@ -14,40 +14,46 @@ namespace Enoki
 			C_ALPHA
 		};
 
-		Colour() = default;
-
-		Colour(const uint8 r_arg, const uint8 g_arg, const uint8 b_arg, const uint8 a_arg)
-			: r(r_arg)
-			, g(g_arg)
-			, b(b_arg)
-			, a(a_arg)
-		{ };
-
-		Colour(const vec4_t& floatColour)
-			: Colour(
-				(uint8)(floatColour.x * 255),
-				(uint8)(floatColour.y * 255),
-				(uint8)(floatColour.z * 255),
-				(uint8)(floatColour.w * 255)
-			)
-		{};
-
-		Colour(const uint32 colour) { *(uint32*)channels = colour; };
-
-		uint32 GetUint32() const { return reinterpret_cast<uint32>(channels); }
-
-		vec4_t GetVec4() const {
-			return vec4(
-				(float)r  / 255.f,
-				(float)g  / 255.f,
-				(float)b  / 255.f,
-				(float)a  / 255.f
-			);
+		inline Colour FromVec4(const vec4_t& floatColour)
+		{
+			return Colour {
+				.r = (uint8)(floatColour.x * 255),
+				.g = (uint8)(floatColour.y * 255),
+				.b = (uint8)(floatColour.z * 255),
+				.a = (uint8)(floatColour.w * 255),
+			};
 		}
 
-		float GetAsFloat(const Channel channel) { return (float)channels[channel] / 255.f; }
+		inline Colour FromPacked(const uint32 colour)
+		{
+			return Colour {.packed = colour};
+		}
 
-		union {
+		inline vec4_t GetVec4() const
+		{
+			return vec4(GetChannel<float>(C_RED),
+			            GetChannel<float>(C_GREEN),
+			            GetChannel<float>(C_BLUE),
+			            GetChannel<float>(C_ALPHA));
+		}
+
+		template <typename T>
+		inline T GetChannel(const Channel channel) const;
+
+		template <>
+		inline uint32 GetChannel<uint32>(const Channel channel) const
+		{
+			return channels[channel];
+		}
+
+		template <>
+		inline float GetChannel<float>(const Channel channel) const
+		{
+			return (float)channels[channel] / 255.f;
+		}
+
+		union
+		{
 			struct
 			{
 				uint8 r;
@@ -56,6 +62,7 @@ namespace Enoki
 				uint8 a;
 			};
 			uint8 channels[4];
+			uint32 packed;
 		};
 	};
-}
+} // namespace Enoki

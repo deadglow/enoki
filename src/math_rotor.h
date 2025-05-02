@@ -89,10 +89,10 @@ vec3_t rot3_transform(const rotor3_t r, const vec3_t v);
 mat4_t rot3_matrix(const rotor3_t r);
 mat4_t m4_trs(const vec3_t t, const rotor3_t r, const float s);
 
-
 #endif // MATH_ROTOR_HEADER
 
 #ifdef MATH_ROTOR_IMPLEMENTATION
+#include "math_3d.h"
 
 rotor3_t rot3_normalize(const rotor3_t r)
 {
@@ -121,12 +121,10 @@ rotor3_t rot3_from_to(const vec3_t from, vec3_t to)
 	const float sinHalfTheta = sinf(theta * 0.5f);
 
 	const bivector3_t wedge = bv3_wedge(to, from);
-	return rotor3(
-		cosHalfTheta,
-		sinHalfTheta * wedge.xy,
-		sinHalfTheta * wedge.yz,
-		sinHalfTheta * wedge.zx
-	);
+	return rotor3(cosHalfTheta,
+	              sinHalfTheta * wedge.xy,
+	              sinHalfTheta * wedge.yz,
+	              sinHalfTheta * wedge.zx);
 }
 
 // ensure from and to are normalized
@@ -138,12 +136,7 @@ rotor3_t rot3_from_to_fast(const vec3_t from, vec3_t to)
 
 	const bivector3_t wedge = bv3_wedge(halfway, from);
 	float fDotH = v3_dot(from, halfway);
-	return rotor3(
-		fDotH,
-		wedge.xy,
-		wedge.yz,
-		wedge.zx
-	);
+	return rotor3(fDotH, wedge.xy, wedge.yz, wedge.zx);
 }
 
 rotor3_t rot3_nlerp(const rotor3_t a, const rotor3_t b, float t)
@@ -206,22 +199,18 @@ rotor3_t rot3_look_rotation_nochecks(const vec3_t forward, const vec3_t up)
 vec3_t rot3_transform(const rotor3_t r, const vec3_t v)
 {
 	// s = rv
-	vec3_t s = vec3(
-		(v.x * r.s) + (v.y * r.xy) - (v.z * r.zx),
-		(v.y * r.s) - (v.x * r.xy) + (v.z * r.yz),
-		(v.z * r.s) - (v.y * r.yz) + (v.x * r.zx)
-	);
+	vec3_t s = vec3((v.x * r.s) + (v.y * r.xy) - (v.z * r.zx),
+	                (v.y * r.s) - (v.x * r.xy) + (v.z * r.yz),
+	                (v.z * r.s) - (v.y * r.yz) + (v.x * r.zx));
 
 	float sxyz = v.x * r.yz + v.y * r.zx + v.z * r.xy;
 
 	rotor3_t g = rot3_reverse(r);
 
 	// p = q * r^-1
-	vec3_t v3 = vec3(
-		(s.x * g.s) - (s.y * g.xy) + (s.z * g.zx) - (sxyz * g.yz),
-		(s.y * g.s) + (s.x * g.xy) - (s.z * g.yz) - (sxyz * g.zx),
-		(s.z * g.s) - (s.x * g.zx) + (s.y * g.yz) - (sxyz * g.xy)
-	);
+	vec3_t v3 = vec3((s.x * g.s) - (s.y * g.xy) + (s.z * g.zx) - (sxyz * g.yz),
+	                 (s.y * g.s) + (s.x * g.xy) - (s.z * g.yz) - (sxyz * g.zx),
+	                 (s.z * g.s) - (s.x * g.zx) + (s.y * g.yz) - (sxyz * g.xy));
 	return v3;
 
 	// p.xyz = (sxyz * r.s) - (s.x * r.yz) - (s.y * r.zx) - (s.z * r.xy);

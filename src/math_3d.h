@@ -94,10 +94,10 @@ v1.0  2016-02-15  Initial release
 #endif
 
 // Scalar functions
-static inline float lerp(float a, float b, float t)
-{
-	return a + (b - a) * t;
-}
+// static inline float lerp(float a, float b, float t)
+// {
+// 	return a + (b - a) * t;
+// }
 
 //
 // 2D vectors
